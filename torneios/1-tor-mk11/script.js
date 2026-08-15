@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             matches: [
                 { id: "M6", p1: "Elvis", p2: "Vencedor M2" },
                 { id: "M7", p1: "Kouran", p2: "Riko", s1: 0, s2: 2, winner: 2 },
-                { id: "M8", p1: "Vencedor M5", p2: "Vencedor R1" },
+                { id: "M8", p1: "Vencedor M5", p2: "Raul" },
                 { id: "M9", p1: "Vencedor R2", p2: "BYE" }
             ]
         },
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Repescagem (Retorno para Fase 2)",
             matches: [
-                { id: "R1", p1: "Kaue", p2: "Raul" },
+                { id: "R1", p1: "Kaue", p2: "Raul", s1: 0, s2: 2, winner: 2 },
                 { id: "R2", p1: "Perdedor M2", p2: "Perdedor M5" }
             ]
         }
