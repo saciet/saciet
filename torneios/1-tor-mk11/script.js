@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Fase 2 (Quartas de Final)",
             matches: [
                 { id: "M6", p1: "Elvis", p2: "Vencedor M2" },
-                { id: "M7", p1: "Kouran", p2: "Riko" },
+                { id: "M7", p1: "Kouran", p2: "Riko", s1: 0, s2: 2, winner: 2 },
                 { id: "M8", p1: "Vencedor M5", p2: "Vencedor R1" },
                 { id: "M9", p1: "Vencedor R2", p2: "BYE" }
             ]
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Semifinais",
             matches: [
-                { id: "M10", p1: "Vencedor M6", p2: "Vencedor M7" },
+                { id: "M10", p1: "Vencedor M6", p2: "Riko" },
                 { id: "M11", p1: "Vencedor M8", p2: "Vencedor M9" }
             ]
         },
