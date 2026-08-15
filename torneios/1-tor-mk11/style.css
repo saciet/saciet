@@ -1,0 +1,210 @@
+/* MK11 Tournament Specific Styles */
+
+:root {
+    --mk-red: #d32f2f;
+    --mk-dark: #0a0a0a;
+}
+
+body {
+    background-color: var(--mk-dark);
+}
+
+.glow-mk {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(211, 47, 47, 0.1) 0%, transparent 70%);
+    top: 20%;
+    left: 20%;
+    animation: pulse 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.tournament-container {
+    max-width: 1000px;
+}
+
+.back-nav {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--mk-red);
+    text-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+}
+
+.mk-logo {
+    border-color: var(--mk-red);
+    box-shadow: 0 8px 32px 0 rgba(211, 47, 47, 0.2);
+}
+
+.mk-logo::after {
+    background: linear-gradient(45deg, var(--mk-red), var(--primary-color), transparent);
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--surface-border);
+    padding-bottom: 1rem;
+}
+
+/* Participants */
+.participants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.participant-card {
+    background: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    border-left: 3px solid var(--primary-color);
+}
+
+.participant-card:hover {
+    transform: translateY(-3px);
+    border-left-color: var(--mk-red);
+    box-shadow: 0 5px 15px rgba(211, 47, 47, 0.2);
+}
+
+/* Bracket layout */
+.bracket-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.bracket h3 {
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.bracket-desc {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.bracket-rounds {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.bracket-rounds::-webkit-scrollbar {
+    height: 8px;
+}
+
+.bracket-rounds::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.bracket-rounds::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.round {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 200px;
+    gap: 1rem;
+}
+
+.round-title {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.match {
+    background: var(--surface-color);
+    border: 1px solid var(--surface-border);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.match-number {
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--bg-color);
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: 1px solid var(--surface-border);
+}
+
+.player {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.player:last-child {
+    border-bottom: none;
+}
+
+.player.winner {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.player.bye {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.score {
+    font-family: monospace;
+    color: var(--text-muted);
+}
+
+.losers-placeholder {
+    width: 100%;
+    text-align: center;
+    padding: 3rem;
+    background: var(--surface-color);
+    border: 1px dashed var(--surface-border);
+    border-radius: 8px;
+    color: var(--text-muted);
+}

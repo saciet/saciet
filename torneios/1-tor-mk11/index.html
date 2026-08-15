@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneio MK11 - Sagrada do Círculo Eterno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css"> <!-- Base styles -->
+    <link rel="stylesheet" href="style.css"> <!-- Specific styles -->
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-mk"></div>
+    </div>
+
+    <main class="container tournament-container">
+        <nav class="back-nav animate-on-scroll">
+            <a href="../../index.html" class="back-link">← Voltar para a Home</a>
+        </nav>
+
+        <header class="header animate-on-scroll">
+            <div class="logo-container mk-logo">
+                <img src="../../logo.png" alt="Logo Sagrada do Círculo Eterno" class="logo">
+            </div>
+            <h1 class="title">I Torneio de Mortal Kombat 11</h1>
+            <p class="subtitle">Sagrada do Círculo Eterno</p>
+        </header>
+
+        <section class="participants-section animate-on-scroll">
+            <h2 class="section-title">Kombatentes (10)</h2>
+            <div class="participants-grid" id="participantsGrid">
+                <!-- Participants will be loaded via JS -->
+            </div>
+        </section>
+
+        <section class="bracket-section animate-on-scroll">
+            <h2 class="section-title">Chaveamento (Dupla Eliminação)</h2>
+            <p class="bracket-desc">O formato de dupla eliminação (repescagem) garante que cada kombatente precise perder duas vezes para ser eliminado. Abaixo estão as chaves iniciais geradas.</p>
+            
+            <div class="bracket-wrapper">
+                <div class="bracket winners-bracket">
+                    <h3>Chave dos Vencedores (Winners Bracket)</h3>
+                    <div class="bracket-rounds" id="winnersBracket">
+                        <!-- Bracket will be rendered here -->
+                    </div>
+                </div>
+
+                <div class="bracket losers-bracket">
+                    <h3>Chave de Repescagem (Losers Bracket)</h3>
+                    <div class="bracket-rounds" id="losersBracket">
+                        <!-- Losers Bracket will be rendered here -->
+                        <div class="losers-placeholder">
+                            <p>Os confrontos da repescagem serão definidos conforme as derrotas na Chave dos Vencedores.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneios - Sagrada do Círculo Eterno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tournaments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tournament-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tournament-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(246, 206, 120, 0.1);
+        }
+
+        .tournament-banner {
+            height: 150px;
+            background: linear-gradient(135deg, rgba(211, 47, 47, 0.2) 0%, rgba(0,0,0,0.8) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #d32f2f; /* MK red */
+            text-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+        }
+
+        .tournament-info {
+            padding: 1.5rem;
+        }
+
+        .tournament-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .tournament-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .back-nav {
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+
+    <main class="container">
+        <nav class="back-nav animate-on-scroll">
+            <a href="../index.html" class="back-link">← Voltar para a Home</a>
+        </nav>
+
+        <header class="header animate-on-scroll">
+            <h1 class="title">Hub de Torneios</h1>
+            <p class="subtitle">Competições da Sagrada do Círculo Eterno</p>
+        </header>
+
+        <section class="animate-on-scroll">
+            <div class="tournaments-grid">
+                <!-- MK11 Tournament Card -->
+                <a href="1-tor-mk11/index.html" class="tournament-card">
+                    <div class="tournament-banner">
+                        MK11
+                    </div>
+                    <div class="tournament-info">
+                        <h3>I Torneio de Mortal Kombat 11</h3>
+                        <p>Batalha épica com os 10 Kombatentes do servidor em formato de Dupla Eliminação.</p>
+                        <span class="status-badge">Em Andamento</span>
+                    </div>
+                </a>
+                
+                <!-- Placeholder for future tournaments -->
+                <div class="tournament-card" style="opacity: 0.5; pointer-events: none;">
+                    <div class="tournament-banner" style="background: rgba(255,255,255,0.02); color: var(--text-muted);">
+                        ???
+                    </div>
+                    <div class="tournament-info">
+                        <h3 style="color: var(--text-muted);">Próximo Torneio</h3>
+                        <p>Em breve novas competições serão anunciadas para a comunidade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>
