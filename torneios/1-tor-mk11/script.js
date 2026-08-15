@@ -22,20 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Fase 1 (Todos lutam)",
             matches: [
-                { id: "M1", p1: "Kaue", p2: "Elvis" },
+                { id: "M1", p1: "Kaue", p2: "Elvis", s1: 0, s2: 2, winner: 2 },
                 { id: "M2", p1: "Tigas", p2: "Isaac" },
-                { id: "M3", p1: "SAVAGE7CK", p2: "Kouran" },
-                { id: "M4", p1: "Riko", p2: "Raul" },
+                { id: "M3", p1: "SAVAGE7CK", p2: "Kouran", s1: "W.O", s2: "W", winner: 2 },
+                { id: "M4", p1: "Riko", p2: "Raul", s1: 2, s2: 0, winner: 1 },
                 { id: "M5", p1: "Shy", p2: "Erick" }
             ]
         },
         {
             name: "Fase 2 (Quartas de Final)",
             matches: [
-                { id: "M6", p1: "Vencedor M1", p2: "Vencedor M2" },
-                { id: "M7", p1: "Vencedor M3", p2: "Vencedor M4" },
+                { id: "M6", p1: "Elvis", p2: "Vencedor M2" },
+                { id: "M7", p1: "Kouran", p2: "Riko" },
                 { id: "M8", p1: "Vencedor M5", p2: "Vencedor R1" },
-                { id: "M9", p1: "Vencedor R2", p2: "Vencedor R3 (BYE)" }
+                { id: "M9", p1: "Vencedor R2", p2: "BYE" }
             ]
         },
         {
@@ -57,9 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Repescagem (Retorno para Fase 2)",
             matches: [
-                { id: "R1", p1: "Perdedor M1", p2: "Perdedor M2" },
-                { id: "R2", p1: "Perdedor M3", p2: "Perdedor M4" },
-                { id: "R3", p1: "Perdedor M5", p2: "BYE" }
+                { id: "R1", p1: "Kaue", p2: "Raul" },
+                { id: "R2", p1: "Perdedor M2", p2: "Perdedor M5" }
             ]
         }
     ];
@@ -86,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 matchDiv.innerHTML = `
                     <div class="match-number">${match.id}</div>
-                    <div class="player ${isP1Bye ? 'bye' : ''}">
+                    <div class="player ${isP1Bye ? 'bye' : ''} ${match.winner === 1 ? 'winner' : ''}">
                         <span class="name">${match.p1}</span>
-                        <span class="score">-</span>
+                        <span class="score">${match.s1 !== undefined ? match.s1 : '-'}</span>
                     </div>
-                    <div class="player ${isP2Bye ? 'bye' : ''}">
+                    <div class="player ${isP2Bye ? 'bye' : ''} ${match.winner === 2 ? 'winner' : ''}">
                         <span class="name">${match.p2}</span>
-                        <span class="score">-</span>
+                        <span class="score">${match.s2 !== undefined ? match.s2 : '-'}</span>
                     </div>
                 `;
                 roundDiv.appendChild(matchDiv);
