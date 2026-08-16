@@ -208,3 +208,91 @@ body {
     border-radius: 8px;
     color: var(--text-muted);
 }
+
+/* Video Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--surface-color);
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    border: 1px solid var(--mk-red);
+    position: relative;
+    box-shadow: 0 0 20px rgba(211, 47, 47, 0.4);
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--mk-red);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.match.has-video {
+    cursor: pointer;
+    border-color: rgba(211, 47, 47, 0.5);
+    transition: all 0.2s;
+}
+
+.match.has-video:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(211, 47, 47, 0.3);
+    border-color: var(--mk-red);
+    z-index: 5;
+}
+
+.match.has-video::after {
+    content: '▶';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--mk-red);
+    color: white;
+    font-size: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    z-index: 2;
+}
