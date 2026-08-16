@@ -41,14 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Semifinais",
             matches: [
-                { id: "M10", p1: "Isaac", p2: "Riko" },
+                { id: "M10", p1: "Isaac", p2: "Riko", s1: 0, s2: 2, winner: 2, video: "iwMSQo4o1rg", status: 'finalizado' },
                 { id: "M11", p1: "Vencedor M8", p2: "Vencedor M9" }
             ]
         },
         {
             name: "Grande Final",
             matches: [
-                { id: "M12", p1: "Vencedor M10", p2: "Vencedor M11" }
+                { id: "M12", p1: "Riko", p2: "Vencedor M11" }
             ]
         }
     ];
