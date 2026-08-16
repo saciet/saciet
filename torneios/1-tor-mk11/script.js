@@ -101,7 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     matchDiv.addEventListener('click', () => {
                         const modal = document.getElementById('videoModal');
                         const iframe = document.getElementById('videoIframe');
-                        iframe.src = `https://www.youtube.com/embed/${match.video}?rel=0`;
+                        const fallback = document.getElementById('videoFallbackLink');
+                        
+                        iframe.src = `https://www.youtube-nocookie.com/embed/${match.video}?rel=0&origin=http://localhost`;
+                        if(fallback) fallback.href = `https://www.youtube.com/watch?v=${match.video}`;
+                        
                         modal.style.display = 'flex';
                     });
                 }
