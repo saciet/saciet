@@ -22,18 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Fase 1 (Todos lutam)",
             matches: [
-                { id: "M1", p1: "Kaue", p2: "Elvis", s1: 0, s2: 2, winner: 2, video: "rb9HwW2hj24" },
-                { id: "M2", p1: "Tigas", p2: "Isaac" },
-                { id: "M3", p1: "SAVAGE7CK", p2: "Kouran", s1: "W.O", s2: "W", winner: 2 },
-                { id: "M4", p1: "Riko", p2: "Raul", s1: 2, s2: 0, winner: 1, video: "8AYVjBCrXfI" },
-                { id: "M5", p1: "Shy", p2: "Erick" }
+                { id: "M1", p1: "Kaue", p2: "Elvis", s1: 0, s2: 2, winner: 2, video: "rb9HwW2hj24", status: 'finalizado' },
+                { id: "M2", p1: "Tigas", p2: "Isaac", status: 'aguardando' },
+                { id: "M3", p1: "SAVAGE7CK", p2: "Kouran", s1: "W.O", s2: "W", winner: 2, status: 'wo' },
+                { id: "M4", p1: "Riko", p2: "Raul", s1: 2, s2: 0, winner: 1, video: "8AYVjBCrXfI", status: 'finalizado' },
+                { id: "M5", p1: "Shy", p2: "Erick", status: 'aguardando' }
             ]
         },
         {
             name: "Fase 2 (Quartas de Final)",
             matches: [
                 { id: "M6", p1: "Elvis", p2: "Vencedor M2" },
-                { id: "M7", p1: "Kouran", p2: "Riko", s1: 0, s2: 2, winner: 2, video: "ZAbJJKZRxRg" },
+                { id: "M7", p1: "Kouran", p2: "Riko", s1: 0, s2: 2, winner: 2, video: "ZAbJJKZRxRg", status: 'finalizado' },
                 { id: "M8", p1: "Vencedor M5", p2: "Raul" },
                 { id: "M9", p1: "Vencedor R2", p2: "BYE" }
             ]
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Repescagem (Retorno para Fase 2)",
             matches: [
-                { id: "R1", p1: "Kaue", p2: "Raul", s1: 0, s2: 2, winner: 2, video: "6rSIUBkkpZg" },
+                { id: "R1", p1: "Kaue", p2: "Raul", s1: 0, s2: 2, winner: 2, video: "6rSIUBkkpZg", status: 'finalizado' },
                 { id: "R2", p1: "Perdedor M2", p2: "Perdedor M5" }
             ]
         }
@@ -83,14 +83,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isP1Bye = match.p1 === 'BYE';
                 const isP2Bye = match.p2 === 'BYE';
 
+                const getAvatar = (name) => {
+                    if(!name || name === 'BYE' || name.startsWith('Vencedor') || name.startsWith('Perdedor')) return '';
+                    return `<img src="https://ui-avatars.com/api/?name=${name}&background=d32f2f&color=fff&bold=true" class="player-avatar" alt="${name}">`;
+                };
+
+                let statusHTML = '';
+                if (match.status) {
+                    let statusText = match.status;
+                    let statusClass = 'status-badge';
+                    if(match.status === 'aguardando') { statusText = 'Aguardando'; statusClass += ' status-aguardando'; }
+                    if(match.status === 'finalizado') { statusText = 'Finalizado'; statusClass += ' status-finalizado'; }
+                    if(match.status === 'wo') { statusText = 'W.O.'; statusClass += ' status-wo'; }
+                    statusHTML = `<div class="${statusClass}">${statusText}</div>`;
+                }
+
                 matchDiv.innerHTML = `
+                    ${statusHTML}
                     <div class="match-number">${match.id}</div>
-                    <div class="player ${isP1Bye ? 'bye' : ''} ${match.winner === 1 ? 'winner' : ''}">
-                        <span class="name">${match.p1}</span>
+                    <div class="player ${isP1Bye ? 'bye' : ''} ${match.winner === 1 ? 'winner' : ''}" data-player="${match.p1}">
+                        <div class="player-info">
+                            ${getAvatar(match.p1)}
+                            <span class="name">${match.p1}</span>
+                        </div>
                         <span class="score">${match.s1 !== undefined ? match.s1 : '-'}</span>
                     </div>
-                    <div class="player ${isP2Bye ? 'bye' : ''} ${match.winner === 2 ? 'winner' : ''}">
-                        <span class="name">${match.p2}</span>
+                    <div class="player ${isP2Bye ? 'bye' : ''} ${match.winner === 2 ? 'winner' : ''}" data-player="${match.p2}">
+                        <div class="player-info">
+                            ${getAvatar(match.p2)}
+                            <span class="name">${match.p2}</span>
+                        </div>
                         <span class="score">${match.s2 !== undefined ? match.s2 : '-'}</span>
                     </div>
                 `;
@@ -157,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const y2 = rect2.top + rect2.height / 2 - containerRect.top + container.scrollTop;
 
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                // S-curve for better look
                 const curve = Math.abs(x2 - x1) / 2; 
                 const d = `M ${x1} ${y1} C ${x1 + curve} ${y1}, ${x2 - curve} ${y2}, ${x2} ${y2}`;
                 
@@ -165,6 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 path.setAttribute('stroke', 'rgba(211, 47, 47, 0.4)'); 
                 path.setAttribute('stroke-width', '2');
                 path.setAttribute('fill', 'none');
+                path.classList.add('connection-line');
+                path.dataset.m1 = conn[0];
+                path.dataset.m2 = conn[1];
                 svg.appendChild(path);
             }
         });
@@ -201,4 +225,80 @@ document.addEventListener('DOMContentLoaded', () => {
             window.closeModal();
         }
     });
+
+    // --- Hover Highlighting Logic ---
+    const swooshAudio = new Audio('https://actions.google.com/sounds/v1/foley/swoosh_fast.ogg');
+    swooshAudio.volume = 0.2;
+    
+    document.querySelectorAll('.player').forEach(playerEl => {
+        playerEl.addEventListener('mouseenter', (e) => {
+            const playerName = playerEl.dataset.player;
+            if (!playerName || playerName === 'BYE' || playerName.startsWith('Vencedor') || playerName.startsWith('Perdedor')) return;
+            
+            swooshAudio.currentTime = 0;
+            swooshAudio.play().catch(() => {});
+
+            // Highlight matches
+            document.querySelectorAll('.match').forEach(m => {
+                const players = m.querySelectorAll('.player');
+                const p1 = players[0]?.dataset.player;
+                const p2 = players[1]?.dataset.player;
+                if(p1 === playerName || p2 === playerName) {
+                    m.classList.add('highlighted');
+                }
+            });
+            
+            // Note: complex line highlighting omitted for simplicity, highlights match boxes instead.
+        });
+
+        playerEl.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.match.highlighted').forEach(m => m.classList.remove('highlighted'));
+        });
+    });
+
+    // --- Embers Canvas Logic ---
+    const canvas = document.getElementById('embers');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        const particles = [];
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        for(let i = 0; i < 40; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2.5 + 1,
+                speedY: Math.random() * -1.5 - 0.5,
+                speedX: (Math.random() - 0.5) * 1,
+                opacity: Math.random() * 0.8 + 0.2
+            });
+        }
+
+        function drawEmbers() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = 'rgba(211, 47, 47, 0.8)';
+            particles.forEach(p => {
+                ctx.globalAlpha = p.opacity;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                p.y += p.speedY;
+                p.x += p.speedX;
+                
+                if(p.y < -10) {
+                    p.y = height + 10;
+                    p.x = Math.random() * width;
+                }
+            });
+            requestAnimationFrame(drawEmbers);
+        }
+        drawEmbers();
+    }
 });

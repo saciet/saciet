@@ -23,6 +23,17 @@ body {
     100% { transform: scale(1.2); opacity: 0.8; }
 }
 
+#embers {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.6;
+}
+
 .tournament-container {
     max-width: 1000px;
 }
@@ -149,13 +160,34 @@ body {
 }
 
 .match {
-    background: var(--surface-color);
-    border: 1px solid var(--surface-border);
-    border-radius: 6px;
-    overflow: hidden;
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(211, 47, 47, 0.3);
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+/* Watermark */
+.match::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background-image: url('../../logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
 }
 
 .match-number {
@@ -178,6 +210,29 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1;
+    cursor: default;
+    transition: background 0.2s;
+}
+
+.player:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #333;
+    border: 1px solid var(--mk-red);
+    object-fit: cover;
 }
 
 .player:last-child {
@@ -197,14 +252,49 @@ body {
 .score {
     font-family: monospace;
     color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.status-badge {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #555;
+    color: white;
+}
+
+.status-aguardando { color: #00BCD4; border-color: #00BCD4; animation: blink 2s infinite; }
+.status-finalizado { color: #888; border-color: #444; }
+.status-wo { color: #FFC107; border-color: #FFC107; }
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Highlighting Logic */
+.match.highlighted {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    transform: scale(1.03);
+    z-index: 10;
 }
 
 .losers-placeholder {
     width: 100%;
     text-align: center;
     padding: 3rem;
-    background: var(--surface-color);
-    border: 1px dashed var(--surface-border);
+    background: rgba(30, 30, 30, 0.4);
+    backdrop-filter: blur(5px);
+    border: 1px dashed rgba(255,255,255,0.2);
     border-radius: 8px;
     color: var(--text-muted);
 }
