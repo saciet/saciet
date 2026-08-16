@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Fase 1 (Todos lutam)",
             matches: [
                 { id: "M1", p1: "Kaue", p2: "Elvis", s1: 0, s2: 2, winner: 2, video: "rb9HwW2hj24", status: 'finalizado' },
-                { id: "M2", p1: "Tigas", p2: "Isaac", status: 'aguardando' },
+                { id: "M2", p1: "Tigas", p2: "Isaac", s1: 0, s2: 3, winner: 2, video: "XRidyYglFyw", status: 'finalizado' },
                 { id: "M3", p1: "SAVAGE7CK", p2: "Kouran", s1: "W.O", s2: "W", winner: 2, status: 'wo' },
                 { id: "M4", p1: "Riko", p2: "Raul", s1: 2, s2: 0, winner: 1, video: "8AYVjBCrXfI", status: 'finalizado' },
                 { id: "M5", p1: "Shy", p2: "Erick", status: 'aguardando' }
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Fase 2 (Quartas de Final)",
             matches: [
-                { id: "M6", p1: "Elvis", p2: "Vencedor M2" },
+                { id: "M6", p1: "Elvis", p2: "Isaac", s1: 0, s2: 2, winner: 2, video: "J3Ri4Kb3B1E", status: 'finalizado' },
                 { id: "M7", p1: "Kouran", p2: "Riko", s1: 0, s2: 2, winner: 2, video: "ZAbJJKZRxRg", status: 'finalizado' },
                 { id: "M8", p1: "Vencedor M5", p2: "Raul" },
                 { id: "M9", p1: "Vencedor R2", p2: "BYE" }
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Semifinais",
             matches: [
-                { id: "M10", p1: "Vencedor M6", p2: "Riko" },
+                { id: "M10", p1: "Isaac", p2: "Riko" },
                 { id: "M11", p1: "Vencedor M8", p2: "Vencedor M9" }
             ]
         },
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Repescagem (Retorno para Fase 2)",
             matches: [
                 { id: "R1", p1: "Kaue", p2: "Raul", s1: 0, s2: 2, winner: 2, video: "6rSIUBkkpZg", status: 'finalizado' },
-                { id: "R2", p1: "Perdedor M2", p2: "Perdedor M5" }
+                { id: "R2", p1: "Tigas", p2: "Perdedor M5" }
             ]
         }
     ];
