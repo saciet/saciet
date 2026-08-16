@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         {
-            name: "Grande Final",
+            name: "Finais",
             matches: [
-                { id: "M12", p1: "Riko", p2: "Vencedor M11" }
+                { id: "M12", title: "GRANDE FINAL", p1: "Riko", p2: "Vencedor M11" },
+                { id: "M13", title: "3º LUGAR", p1: "Isaac", p2: "Perdedor M11" }
             ]
         }
     ];
@@ -97,9 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(match.status === 'wo') { statusText = 'W.O.'; statusClass += ' status-wo'; }
                     statusHTML = `<div class="${statusClass}">${statusText}</div>`;
                 }
+                
+                let titleHTML = '';
+                if (match.title) {
+                    titleHTML = `<div style="text-align: center; font-size: 0.65rem; color: #FFD700; padding: 4px 0 0 0; font-weight: bold; letter-spacing: 1px; z-index: 2; position: relative;">${match.title}</div>`;
+                }
 
                 matchDiv.innerHTML = `
                     ${statusHTML}
+                    ${titleHTML}
                     <div class="match-number">${match.id}</div>
                     <div class="player ${isP1Bye ? 'bye' : ''} ${match.winner === 1 ? 'winner' : ''}" data-player="${match.p1}">
                         <div class="player-info">
@@ -202,7 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ['M5', 'M8'], 
             ['M6', 'M10'], ['M7', 'M10'],
             ['M8', 'M11'], ['M9', 'M11'],
-            ['M10', 'M12'], ['M11', 'M12']
+            ['M10', 'M12'], ['M11', 'M12'],
+            ['M10', 'M13'], ['M11', 'M13']
         ]);
         // Losers bracket connections if any in the future
     };
